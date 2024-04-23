@@ -15,7 +15,6 @@ async function login(email, password) {
         expiresIn: 3600,
         user: {
             ...user,
-            ...AllInfoUser
         }
     }
 }
