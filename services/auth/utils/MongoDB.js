@@ -50,9 +50,13 @@ class MongoDB {
         }
     }
 
-    async findOne(collectionName, query) {
+    async findOne(collectionName, query, select) {
         try {
-            return await this.db.collection(collectionName).findOne(query);
+            return await this.db.collection(collectionName)
+                .findOne(
+                    query,
+                    { projection: select }
+                );
         } catch (error) {
             console.error('Error al buscar documento en MongoDB:', error);
             throw error;
