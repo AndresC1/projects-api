@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-app.use(authRoutes);
+app.use('/api/v1/auth', authRoutes);
 
 app.get('/api/v1/db', async (req, res) => {
     try{

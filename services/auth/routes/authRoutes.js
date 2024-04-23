@@ -1,9 +1,10 @@
 const express = require('express');
 const { loginAuth, registerAuth } = require('../controllers/authController');
+const { checkJWT } = require('../middlewares/checkJWT');
 
-const authRoutes = express();
+const authRoutes = express.Router();
 
-authRoutes.post('/api/v1/auth/login', async (req, res) => {
+authRoutes.post('/login', async (req, res) => {
     try{
         const request = {
             username: req.body.username,
