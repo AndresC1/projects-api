@@ -2,7 +2,11 @@ const { db } = require('../db');
 
 async function getUser(username){
     try {
-        return await db.findOne('users', { username: username });
+        return await db.findOne(
+            'users',
+            { username: username },
+            { _id: 0 }
+        );
     } catch (error) {
         throw new Error('Usuario no encontrado');
     }
