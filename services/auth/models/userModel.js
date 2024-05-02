@@ -14,9 +14,41 @@ async function getUser(username){
 
 async function createUser(user){
     try {
-        return await db.insertOne('users', user);
+        const dataUser = {
+            id_user: await generateUserId(
+                user.username
+            ),
+            ...user,
+            api_key: '',
+            status: 'active',
+            created_at: new Date(),
+            updated_at: new Date(),
+            deleted_at: null,
+            email_verified: false,
+            is_visible: true,
+            is_active: true,
+            is_deleted: false,
+            is_admin: false,
+            is_superadmin: false,
+            is_verified: true,
+            is_blocked: false,
+            is_suspended: false,
+            is_banned: false,
+            is_logged: false,
+        }
+        return await db.insertOne('users', dataUser);
     } catch (error) {
         throw new Error('Error al crear usuario');
+    }
+}
+
+async function generateUserId(letters){
+    try{
+        const number = Math.floor(Math.random() * 10000);
+        const date = new Date();
+        return `${letters}${number}${date.getDate()}${date.getMonth()}${date.getFullYear()}`;
+    } catch (error) {
+        throw new Error('Error al generar id de usuario');
     }
 }
 

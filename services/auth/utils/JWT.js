@@ -5,7 +5,7 @@ const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
 
 function generateToken(info) {
     try{
-        return jwt.sign(info, JWT_SECRET_KEY, { expiresIn: '1h' });
+        return jwt.sign(info, JWT_SECRET_KEY);
     } catch (error) {
         throw new Error('Error al generar token');
     }

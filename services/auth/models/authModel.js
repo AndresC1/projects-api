@@ -1,6 +1,6 @@
 const { generateToken, verifyToken } = require('../utils/JWT');
 const { comparePassword, encryptPassword } = require('../utils/bcrypt');
-const { getUser, getAllInfoUser } = require('./userModel');
+const { getUser, getAllInfoUser, createUser } = require('./userModel');
 
 async function login(email, password) {
     const user = await getUser(email);
